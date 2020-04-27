@@ -3,7 +3,7 @@
 ```
 This image is intended to be used for displaying X11 applications from other containers in a browser. A stand-alone demo as well as a [Version 2](https://docs.docker.com/compose/compose-file/#version-2) composition.
 
-## Image Contents
+# Image Contents
 
 * [Xvfb](http://www.x.org/releases/X11R7.6/doc/man/man1/Xvfb.1.xhtml) - X11 in a virtual framebuffer
 * [x11vnc](http://www.karlrunge.com/x11vnc/) - A VNC server that scrapes the above X11 server
@@ -67,11 +67,17 @@ networks:
 **If the IDE fails to start simply run `docker-compose restart <container-name>`.**
 
 ## On DockerHub / GitHub
-___
+
 * DockerHub [theasp/novnc](https://hub.docker.com/r/theasp/novnc/)
 * GitHub [theasp/docker/novnc](https://github.com/theasp/docker)
 
-# Thanks
-___
+## Thanks
+
 This is based on the alpine container by @psharkey: https://github.com/psharkey/docker/tree/master/novnc
 Based on [wine-x11-novnc-docker](https://github.com/solarkennedy/wine-x11-novnc-docker) and [octave-x11-novnc-docker](https://hub.docker.com/r/epflsti/octave-x11-novnc-docker/).
+
+## Extended
+
+Changed base image to Ubuntu and added SSL. See documentation on this below:
+[Avanced Usage](https://github.com/novnc/noVNC/wiki/Advanced-usage)
+[How To Add A Self Signed Cert](https://github.com/novnc/websockify/wiki/Encrypted-Connections)

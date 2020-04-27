@@ -1,18 +1,20 @@
-FROM debian:buster
+FROM ubuntu:latest
 
 # Install git, supervisor, VNC, & X11 packages
 RUN set -ex; \
     apt-get update; \
-    apt-get install -y \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y \
       bash \
       fluxbox \
       git \
       net-tools \
       novnc \
       supervisor \
+      tightvncserver \
       x11vnc \
       xterm \
       xvfb
+
 
 # Setup demo environment variables
 ENV HOME=/root \
@@ -26,5 +28,5 @@ ENV HOME=/root \
     RUN_XTERM=yes \
     RUN_FLUXBOX=yes
 COPY . /app
-CMD ["/app/entrypoint.sh"]
-EXPOSE 8080
+# CMD ["supervisord", "-c", "/app/supervisord.conf"]
+
