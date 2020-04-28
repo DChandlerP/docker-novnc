@@ -1,1 +1,4 @@
-/self.pem
+/.gitignore
+.dockerignore
+.git
+/.idea

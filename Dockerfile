@@ -10,7 +10,6 @@ RUN set -ex; \
       net-tools \
       novnc \
       supervisor \
-      tightvncserver \
       x11vnc \
       xterm \
       xvfb
