@@ -24,6 +24,11 @@ You can specify the following variables:
 
 Run:
 
+Replace "mysecret" below with your password of choice. Note that you need to fill out enough of the information in openssl for both a private key and a certificate to be created.
+
+```$ echo "mysecret" > ./myvncpassword
+$ openssl req -new -x509 -days 365 -nodes -out self-signed.pem -keyout self-signed.pem```
+
 ``` LSF_DOCKER_PORTS='8080:8080' bsub -G compute-ris -Is -R 'select[port8080=1]' -q general-interactive -a 'docker(us.gcr.io/ris-appeng-shared-qa/novnc:latest)' supervisord -c /app/supervisord.conf ```
 Open a browser and see the `xterm` demo at `http://<IP>:8080/vnc.html`
 
