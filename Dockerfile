@@ -6,21 +6,20 @@ RUN set -ex; \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
       bash \
       fluxbox \
+      emacs \
       git \
       nano \
       net-tools \
       novnc \
       python3\
-      gedit\
       supervisor \
+      vim \
       x11vnc \
       xterm \
       xvfb
 
-
 # Setup demo environment variables
-ENV HOME=/root \
-    DEBIAN_FRONTEND=noninteractive \
+ENV DEBIAN_FRONTEND=noninteractive \
     LANG=en_US.UTF-8 \
     LANGUAGE=en_US.UTF-8 \
     LC_ALL=C.UTF-8 \
@@ -30,5 +29,6 @@ ENV HOME=/root \
     RUN_XTERM=yes \
     RUN_FLUXBOX=yes
 COPY . /app
+RUN python3 -m unittest app/test.py
 # CMD ["supervisord", "-c", "/app/supervisord.conf"]
 
