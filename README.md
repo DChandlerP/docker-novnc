@@ -17,23 +17,26 @@ You can specify the following variables:
 
 * `DISPLAY_WIDTH=<width>` (1024)
 * `DISPLAY_HEIGHT=<height>` (768)
-* `RUN_XTERM={yes|no}` (yes)
-* `RUN_FLUXBOX={yes|no}` (yes)
 
 ## Stand-alone Demo
 
-Run:
-
-Replace "mysecret" below with your password of choice. Note that you need to fill out enough of the information in openssl for both a private key and a certificate to be created.
-
+Run on LSF: 
+Note: You'd want to fill in your own password rather than leave this blank
+```bash
+export LSF_DOCKER_PORTS='8080:8080'
+export PASSWORD=
+bsub -G compute-ris -Is -R 'select[port8080=1]' -q general-interactive -a 'docker(us.gcr.io/ris-appeng-shared-qa/novnc:latest)' supervisord -c /app/supervisord.conf
 ```
-$ openssl req -new -x509 -days 365 -nodes -out self-signed.pem -keyout self-signed.pem
+Since LSF is running interactively it will tell you the name of the blade it's running on. The blade will be the IP address
+needed to access the VNC. For example.
+```<<Starting on compute1-exec-187.ris.wustl.edu>>``` would mean the IP would be ```https://compute1-exec-187.ris.wustl.edu:8080/vnc.html```
+You will get security warnings as we are currently using a self signed certificate. The password will be what you
+entered above.
+
+In order to create a self-signed certificate
+```bash
+openssl req -new -x509 -days 365 -nodes -out self-signed.pem -keyout self-signed.pem
 ```
-
-``` LSF_DOCKER_PORTS='8080:8080' bsub -G compute-ris -Is -R 'select[port8080=1]' -q general-interactive -a 'docker(us.gcr.io/ris-appeng-shared-qa/novnc:latest)' python3 /app/startup.py```
-Open a browser and see the `xterm` demo at `http://<IP>:8080/vnc.html`
-
-The IP address can be grabbed from observing which blade the job falls on: ```<<Starting on compute1-exec-187.ris.wustl.edu>>``` would mean the IP would be ```http://compute1-exec-187.ris.wustl.edu:8080/vnc.html```
 
 Some notable features:
 
