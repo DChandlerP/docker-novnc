@@ -7,8 +7,11 @@ RUN set -ex; \
       bash \
       fluxbox \
       git \
+      nano \
       net-tools \
       novnc \
+      python3\
+      gedit\
       supervisor \
       x11vnc \
       xterm \
