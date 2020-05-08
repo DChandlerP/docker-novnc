@@ -21,9 +21,6 @@ class TestVersions(unittest.TestCase):
     def test_Emacs(self):
         self.assertEqual(version_output('emacs'), "GNU")
 
-    def test_Fluxbox(self):
-        self.assertEqual(version_output('fluxbox'), "Fluxbox")
-
     def test_Git(self):
         self.assertEqual(version_output('git'), "git")
 
@@ -36,8 +33,8 @@ class TestVersions(unittest.TestCase):
     def test_Vim(self):
         self.assertEqual(version_output('vim'), "VIM")
 
-    def test_Xterm(self):
-        self.assertEqual(version_output('xterm'), "XTerm(330)")
+    def test_XFCE_terminal(self):
+        self.assertEqual(version_output("xfce4-terminal"), "xfce4-terminal")
 
     def test_Xvnc(self):
         self.assertEqual(version_output('x11vnc'), "x11vnc:")

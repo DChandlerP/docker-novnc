@@ -5,7 +5,6 @@ RUN set -ex; \
     apt-get update; \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
       bash \
-      fluxbox \
       emacs \
       git \
       nano \
@@ -15,8 +14,10 @@ RUN set -ex; \
       supervisor \
       vim \
       x11vnc \
-      xterm \
-      xvfb
+      xfce4 \
+      xfce4-terminal \
+      xvfb \
+      && apt-get clean
 
 # Setup demo environment variables
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -24,10 +25,11 @@ ENV DEBIAN_FRONTEND=noninteractive \
     LANGUAGE=en_US.UTF-8 \
     LC_ALL=C.UTF-8 \
     DISPLAY=:0.0 \
-    DISPLAY_WIDTH=1024 \
-    DISPLAY_HEIGHT=768 \
+    DISPLAY_WIDTH=1440 \
+    DISPLAY_HEIGHT=900 \
     RUN_XTERM=yes \
     RUN_FLUXBOX=yes
+
 COPY . /app
 RUN python3 -m unittest app/test.py
 # CMD ["supervisord", "-c", "/app/supervisord.conf"]
